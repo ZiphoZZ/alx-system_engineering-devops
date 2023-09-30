@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Script that displays currently
+# running processes
+
+ps -aux --forest
+
