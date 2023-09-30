@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Script that kills a process
+# This script stops the 4-to_infinity_and_beyond process
+# Requirement: You cannot use kill or killall
 
-pgrep -f 4-to_infinity_and_beyond | xargs kill -15
-
+pkill -f 4-to_infinity_and_beyond
