@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Script that displays text indefinitely
+# This script displays 'To infinity and beyond' indefinitely
+# Requirement: In between each iteration of the loop, add a sleep 2
 
-while :
+while true
 do
-	echo "To infinity and beyond"
-	sleep 2
+    echo "To infinity and beyond"
+    sleep 2
 done
-
