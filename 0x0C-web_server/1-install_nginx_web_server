@@ -1,16 +1,30 @@
 #!/usr/bin/env bash
-# Installs nginx
+# Web servers are the piece of software generating and serving HTML pages, let’s install one!
+# Update package index and install nginx
 apt-get update
 apt-get install -y nginx
-mkdir /etc/nginx/html
-touch /etc/nginx/html/index.html
-echo "Hello World!" > /etc/nginx/html/index.html
-printf %s "server {
-     listen      80 default_server;
-     listen      [::]:80 default_server;
-     root        /etc/nginx/html;
-     index       index.html;
-}
-" > /etc/nginx/sites-available/default
 
-service nginx restart
+# Create a simple HTML file with "Hello World!" content
+echo "Hello World!" > /var/www/html/index.html
+
+# Configure nginx to listen on port 80 and serve the "Hello World!" page
+cat > /etc/nginx/sites-available/default <<EOF
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    root /var/www/html;
+    index index.html;
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF
+
+# Reload nginx configuration to apply changes
+nginx -s reload
+
+# Display success message
+echo "Nginx installed and configured. It should now be serving 'Hello World!' at the root."
+
