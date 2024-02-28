@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Debugging: starts apache
+# fixes an apache server in a container
 service apache2 start
 
